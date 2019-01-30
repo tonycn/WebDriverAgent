@@ -39,6 +39,9 @@ Carthage/Build
 Carthage/Checkouts
 Carthage/Cartfile.resolved
 
+# Cocoapods
+Pods
+
 # Inspector files
 Inspector/node_modules
 
