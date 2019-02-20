@@ -9,8 +9,6 @@
 
 #import "FBCustomCommands.h"
 
-#import <XCTest/XCUIDevice.h>
-
 #import "FBApplication.h"
 #import "FBConfiguration.h"
 #import "FBExceptionHandler.h"

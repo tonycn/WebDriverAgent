@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig     = { 'ENABLE_BITCODE' => 'NO' }
 
   s.subspec 'Core' do |core|
-    core.source_files         = 'WebDriverAgentLib'
+    core.source_files         = 'WebDriverAgentLib/**/*'
     core.public_header_files  = 'WebDriverAgentLib/**/*.h'
     core.requires_arc         = true
     core.dependency 'RoutingHTTPServer'

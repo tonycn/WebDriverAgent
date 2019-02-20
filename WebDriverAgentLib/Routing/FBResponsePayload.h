@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <WebDriverAgentLib/FBCommandStatus.h>
+#import "FBCommandStatus.h"
 
 @class FBElementCache;
 @class RouteResponse;

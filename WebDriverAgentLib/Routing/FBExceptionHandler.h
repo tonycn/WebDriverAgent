@@ -8,7 +8,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <WebDriverAgentLib/FBWebServer.h>
+#import "FBWebServer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

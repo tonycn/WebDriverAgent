@@ -9,7 +9,6 @@
 
 #import "FBAlert.h"
 
-#import <XCTest/XCUICoordinate.h>
 
 #import "FBApplication.h"
 #import "FBErrorBuilder.h"

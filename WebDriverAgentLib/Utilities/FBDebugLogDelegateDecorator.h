@@ -8,7 +8,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <WebDriverAgentLib/XCDebugLogDelegate-Protocol.h>
+#import "XCDebugLogDelegate-Protocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

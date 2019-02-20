@@ -8,7 +8,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <XCTest/XCUIElementTypes.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

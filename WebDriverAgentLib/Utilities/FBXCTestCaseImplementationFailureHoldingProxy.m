@@ -9,7 +9,7 @@
 
 #import "FBXCTestCaseImplementationFailureHoldingProxy.h"
 
-#import <WebDriverAgentLib/_XCTestCaseImplementation.h>
+#import "_XCTestCaseImplementation.h"
 
 @interface FBXCTestCaseImplementationFailureHoldingProxy ()
 @property (nonatomic, strong) _XCTestCaseImplementation *internalImplementation;
