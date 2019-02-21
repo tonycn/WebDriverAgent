@@ -10,7 +10,7 @@
 #import "FBRuntimeUtils.h"
 
 #import "FBMacros.h"
-#import "XCUIDevice.h"
+
 
 #include <dlfcn.h>
 #import <objc/runtime.h>

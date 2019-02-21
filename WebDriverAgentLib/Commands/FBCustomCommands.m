@@ -20,11 +20,11 @@
 #import "FBSession.h"
 #import "FBXCodeCompatibility.h"
 #import "FBSpringboardApplication.h"
-#import "XCUIApplication+FBHelpers.h"
-#import "XCUIDevice+FBHelpers.h"
-#import "XCUIElement.h"
-#import "XCUIElement+FBIsVisible.h"
-#import "XCUIElementQuery.h"
+
+
+
+
+
 
 @implementation FBCustomCommands
 

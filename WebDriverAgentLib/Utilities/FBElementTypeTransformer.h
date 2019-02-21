@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "FBMacros.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**

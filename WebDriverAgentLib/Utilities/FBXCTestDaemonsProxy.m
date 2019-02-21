@@ -8,7 +8,7 @@
  */
 
 #import "FBXCTestDaemonsProxy.h"
-#import "XCTestDriver.h"
+
 #import "XCTRunnerDaemonSession.h"
 #import <objc/runtime.h>
 

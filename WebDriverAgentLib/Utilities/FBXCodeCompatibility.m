@@ -9,7 +9,7 @@
 
 #import "FBXCodeCompatibility.h"
 
-#import "XCUIElementQuery.h"
+
 
 static BOOL FBShouldUseOldElementRootSelector = NO;
 static dispatch_once_t onceRootElementToken;

@@ -8,14 +8,13 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "XCDebugLogDelegate-Protocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  XCTestLogger decorator that will print all debug information to console
  */
-@interface FBDebugLogDelegateDecorator : NSObject <XCDebugLogDelegate>
+@interface FBDebugLogDelegateDecorator : NSObject
 
 /**
  Decorates XCTestLogger by also printing debug message to console

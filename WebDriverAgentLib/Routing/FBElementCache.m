@@ -10,8 +10,8 @@
 #import "FBElementCache.h"
 
 #import "FBAlert.h"
-#import "XCUIElement.h"
-#import "XCUIElement+FBUtilities.h"
+
+
 
 
 @interface FBElementCache ()

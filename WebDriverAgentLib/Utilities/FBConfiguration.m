@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 
 #include "TargetConditionals.h"
-#import "XCTestPrivateSymbols.h"
+
 
 static NSUInteger const DefaultStartingPort = 8100;
 static NSUInteger const DefaultPortRange = 100;

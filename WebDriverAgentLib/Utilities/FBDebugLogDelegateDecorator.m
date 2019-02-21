@@ -10,7 +10,7 @@
 #import "FBDebugLogDelegateDecorator.h"
 
 #import "FBLogger.h"
-#import "XCTestPrivateSymbols.h"
+
 
 @interface FBDebugLogDelegateDecorator ()
 @property (nonatomic, strong) id<XCDebugLogDelegate> debugLogger;
@@ -20,14 +20,7 @@
 
 + (void)decorateXCTestLogger
 {
-  FBDebugLogDelegateDecorator *decorator = [FBDebugLogDelegateDecorator new];
-  id<XCDebugLogDelegate> debugLogger = XCDebugLogger();
-  if ([debugLogger isKindOfClass:FBDebugLogDelegateDecorator.class]) {
-    // Already decorated
-    return;
-  }
-  decorator.debugLogger = debugLogger;
-  XCSetDebugLogger(decorator);
+  
 }
 
 - (void)logDebugMessage:(NSString *)logEntry
@@ -44,7 +37,8 @@
     debugLogEntry = [logEntry substringWithRange:NSMakeRange(ignoreCharCount, logEntry.length - ignoreCharCount)];
   }
   [FBLogger verboseLog:debugLogEntry];
-  [self.debugLogger logDebugMessage:logEntry];
+//  [self.debugLogger logDebugMessage:logEntry];
+  NSLog(logEntry);
 }
 
 @end

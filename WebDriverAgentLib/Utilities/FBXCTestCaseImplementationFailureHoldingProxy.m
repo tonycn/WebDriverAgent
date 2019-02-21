@@ -9,7 +9,6 @@
 
 #import "FBXCTestCaseImplementationFailureHoldingProxy.h"
 
-#import "_XCTestCaseImplementation.h"
 
 @interface FBXCTestCaseImplementationFailureHoldingProxy ()
 @property (nonatomic, strong) _XCTestCaseImplementation *internalImplementation;

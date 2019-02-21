@@ -10,7 +10,6 @@
 #import <Foundation/Foundation.h>
 
 #import "FBElement.h"
-#import "XCElementSnapshot.h"
 
 #ifdef __clang__
 #pragma clang diagnostic push

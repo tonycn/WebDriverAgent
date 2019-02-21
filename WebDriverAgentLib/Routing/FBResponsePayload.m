@@ -14,8 +14,8 @@
 #import "FBResponseJSONPayload.h"
 #import "FBSession.h"
 
-#import "XCUIElement+FBUtilities.h"
-#import "XCUIElement+FBWebDriverAttributes.h"
+
+
 
 inline static NSDictionary *FBDictionaryResponseWithElement(XCUIElement *element, NSString *elementUUID, BOOL compact);
 

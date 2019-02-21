@@ -24,20 +24,9 @@
 #import "FBMathUtils.h"
 #import "FBRuntimeUtils.h"
 #import "NSPredicate+FBFormat.h"
-#import "XCEventGenerator.h"
-#import "XCUICoordinate.h"
-#import "XCUIDevice.h"
-#import "XCUIElement+FBIsVisible.h"
-#import "XCUIElement+FBPickerWheel.h"
-#import "XCUIElement+FBScrolling.h"
-#import "XCUIElement+FBTap.h"
-#import "XCUIElement+FBForceTouch.h"
-#import "XCUIElement+FBTyping.h"
-#import "XCUIElement+FBUtilities.h"
-#import "XCUIElement+FBWebDriverAttributes.h"
 #import "FBElementTypeTransformer.h"
-#import "XCUIElement.h"
-#import "XCUIElementQuery.h"
+
+
 #import "FBXCodeCompatibility.h"
 
 @interface FBElementCommands ()

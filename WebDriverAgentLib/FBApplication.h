@@ -7,11 +7,11 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "XCUIApplication.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FBApplication : XCUIApplication
+@interface FBApplication : NSObject
 
 /**
  Constructor used to get current active application

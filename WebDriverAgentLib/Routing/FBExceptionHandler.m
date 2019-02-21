@@ -15,7 +15,7 @@
 #import "FBResponsePayload.h"
 #import "FBSession.h"
 #import "FBXPath.h"
-#import "XCUIElement+FBClassChain.h"
+
 
 NSString *const FBInvalidArgumentException = @"FBInvalidArgumentException";
 NSString *const FBSessionDoesNotExistException = @"FBSessionDoesNotExistException";

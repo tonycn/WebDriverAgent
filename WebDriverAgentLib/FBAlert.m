@@ -13,19 +13,13 @@
 #import "FBApplication.h"
 #import "FBErrorBuilder.h"
 #import "FBFindElementCommands.h"
-#import "FBSpringboardApplication.h"
 #import "FBLogger.h"
 #import "FBXCodeCompatibility.h"
 #import "XCAXClient_iOS.h"
 #import "XCElementSnapshot+FBHelpers.h"
 #import "XCElementSnapshot.h"
-#import "XCTestManager_ManagerInterface-Protocol.h"
-#import "XCUICoordinate.h"
-#import "XCUIElement+FBTap.h"
-#import "XCUIElement+FBUtilities.h"
-#import "XCUIElement+FBWebDriverAttributes.h"
-#import "XCUIElement.h"
-#import "XCUIElementQuery.h"
+
+
 
 NSString *const FBAlertObstructingElementException = @"FBAlertObstructingElementException";
 

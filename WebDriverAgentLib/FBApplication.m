@@ -9,17 +9,16 @@
 
 #import "FBApplication.h"
 
-#import "FBApplicationProcessProxy.h"
 #import "FBRunLoopSpinner.h"
 #import "FBMacros.h"
 #import "FBXCodeCompatibility.h"
 #import "XCAccessibilityElement.h"
 #import "XCAXClient_iOS.h"
-#import "XCUIApplication.h"
-#import "XCUIApplicationImpl.h"
-#import "XCUIApplicationProcess.h"
-#import "XCUIElement.h"
-#import "XCUIElementQuery.h"
+
+
+
+
+
 
 @interface FBApplication ()
 @property (nonatomic, assign) BOOL fb_isObservingAppImplCurrentProcess;
@@ -128,11 +127,6 @@
   if (!applicationProcess || [applicationProcess isProxy] || ![applicationProcess isMemberOfClass:XCUIApplicationProcess.class]) {
     return;
   }
-  dispatch_async(dispatch_get_main_queue(), ^{
-    // Dispatching this call out of KVO call stack will trigger additional KVO call,
-    // which is required in case there are already registered observers.
-    self.fb_appImpl.currentProcess = (XCUIApplicationProcess *)[FBApplicationProcessProxy proxyWithApplicationProcess:applicationProcess];
-  });
 }
 
 

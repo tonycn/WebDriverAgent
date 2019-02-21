@@ -13,9 +13,5 @@
 
 @implementation FBXPathCreator
 
-+ (NSString *)xpathWithSubelementsOfType:(XCUIElementType)elementType
-{
-  return [NSString stringWithFormat:@"//%@", [FBElementTypeTransformer stringWithElementType:elementType]];
-}
 
 @end

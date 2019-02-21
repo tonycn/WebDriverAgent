@@ -13,6 +13,7 @@
 #import "FBElementTypeTransformer.h"
 #import "FBPredicate.h"
 #import "NSPredicate+FBFormat.h"
+#import "FBMacros.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -27,7 +27,6 @@ FOUNDATION_EXPORT const unsigned char WebDriverAgentLib_VersionString[];
 #import "FBElementTypeTransformer.h"
 #import "FBErrorBuilder.h"
 #import "FBExceptionHandler.h"
-#import "FBFailureProofTestCase.h"
 #import "FBKeyboard.h"
 #import "FBLogger.h"
 #import "FBMacros.h"
@@ -39,19 +38,16 @@ FOUNDATION_EXPORT const unsigned char WebDriverAgentLib_VersionString[];
 #import "FBRunLoopSpinner.h"
 #import "FBRuntimeUtils.h"
 #import "FBSession.h"
-#import "FBSpringboardApplication.h"
-#import "FBSpringboardApplication.h"
 #import "FBXPathCreator.h"
 #import "FBWebServer.h"
-#import "XCElementSnapshot+FBHelpers.h"
-#import "XCUIApplication+FBHelpers.h"
-#import "XCUIDevice+FBHelpers.h"
-#import "XCUIDevice+FBRotation.h"
-#import "XCUIElement+FBAccessibility.h"
-#import "XCUIElement+FBFind.h"
-#import "XCUIElement+FBIsVisible.h"
-#import "XCUIElement+FBScrolling.h"
-#import "XCUIElement+FBTap.h"
-#import "XCUIElement+FBForceTouch.h"
-#import "XCUIElement+FBUtilities.h"
-#import "XCUIElement+FBWebDriverAttributes.h"
+
+
+
+
+
+
+
+
+
+
+

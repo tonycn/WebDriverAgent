@@ -22,7 +22,7 @@
 #import "FBConfiguration.h"
 #import "FBLogger.h"
 
-#import "XCUIDevice+FBHelpers.h"
+
 
 static NSString *const FBServerURLBeginMarker = @"ServerURLHere->";
 static NSString *const FBServerURLEndMarker = @"<-ServerURLHere";

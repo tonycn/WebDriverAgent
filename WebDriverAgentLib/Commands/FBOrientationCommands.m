@@ -8,12 +8,12 @@
  */
 
 #import "FBOrientationCommands.h"
-#import "XCUIDevice+FBRotation.h"
+
 #import "FBRouteRequest.h"
 #import "FBMacros.h"
 #import "FBSession.h"
 #import "FBApplication.h"
-#import "XCUIDevice.h"
+
 
 extern const struct FBWDOrientationValues {
   FBLiteralString portrait;

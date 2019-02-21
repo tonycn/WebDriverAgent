@@ -11,7 +11,7 @@
 
 #import "FBRouteRequest.h"
 
-#import "XCUIDevice+FBHelpers.h"
+
 
 @implementation FBTouchIDCommands
 

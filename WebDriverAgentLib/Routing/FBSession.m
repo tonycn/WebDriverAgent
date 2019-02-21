@@ -18,7 +18,7 @@
 #import "FBSpringboardApplication.h"
 #import "XCAccessibilityElement.h"
 #import "XCAXClient_iOS.h"
-#import "XCUIElement.h"
+
 
 NSString *const FBApplicationCrashedException = @"FBApplicationCrashedException";
 

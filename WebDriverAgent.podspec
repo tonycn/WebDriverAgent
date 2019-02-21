@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
     core.public_header_files  = 'WebDriverAgentLib/**/*.h'
     core.requires_arc         = true
     core.dependency 'RoutingHTTPServer'
+    core.resource = 'Resources/WebDriverAgent.bundle'
   end
 
 end

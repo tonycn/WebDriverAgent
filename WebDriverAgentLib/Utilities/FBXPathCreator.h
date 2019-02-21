@@ -16,13 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FBXPathCreator : NSObject
 
-/**
- Creates xpath string for elements containing elements of type elementType
-
- @param elementType requested XCUIElementType of sub-elements
- @return A string representing the xpath element
- */
-+ (NSString *)xpathWithSubelementsOfType:(XCUIElementType)elementType;
 
 @end
 

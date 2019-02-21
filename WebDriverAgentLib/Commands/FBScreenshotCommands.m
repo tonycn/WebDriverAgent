@@ -9,7 +9,7 @@
 
 #import "FBScreenshotCommands.h"
 
-#import "XCUIDevice+FBHelpers.h"
+
 
 @implementation FBScreenshotCommands
 

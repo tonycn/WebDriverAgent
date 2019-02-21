@@ -18,8 +18,8 @@
 #import "FBMacros.h"
 #import "FBXCodeCompatibility.h"
 #import "XCElementSnapshot.h"
-#import "XCUIElement+FBUtilities.h"
-#import "XCTestDriver.h"
+
+
 #import "FBLogger.h"
 #import "FBConfiguration.h"
 

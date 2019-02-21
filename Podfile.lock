@@ -9,6 +9,9 @@ PODS:
   - CocoaLumberjack/Default (3.4.2)
   - CocoaLumberjack/Extensions (3.4.2):
     - CocoaLumberjack/Default
+  - KIF (1003.7.4):
+    - KIF/Core (= 1003.7.4)
+  - KIF/Core (1003.7.4)
   - RoutingHTTPServer (1.0.0):
     - CocoaHTTPServer (~> 2.3)
   - WebDriverAgent (1.0.0):
@@ -17,6 +20,7 @@ PODS:
     - RoutingHTTPServer
 
 DEPENDENCIES:
+  - KIF (from `git://github.com/tonycn/KIF.git`, commit `ad648fa375a21db25cd11ae9e49f4a5475cfbc9c`)
   - RoutingHTTPServer (= 1.0.0)
   - WebDriverAgent (from `./`)
 
@@ -28,16 +32,25 @@ SPEC REPOS:
     - RoutingHTTPServer
 
 EXTERNAL SOURCES:
+  KIF:
+    :commit: ad648fa375a21db25cd11ae9e49f4a5475cfbc9c
+    :git: git://github.com/tonycn/KIF.git
   WebDriverAgent:
     :path: "./"
+
+CHECKOUT OPTIONS:
+  KIF:
+    :commit: ad648fa375a21db25cd11ae9e49f4a5475cfbc9c
+    :git: git://github.com/tonycn/KIF.git
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaHTTPServer: 5624681fc3473d43b18202f635f9b3abb013b530
   CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
+  KIF: e57f68038bda4937d6932115a1fdea2a0f5161f3
   RoutingHTTPServer: fab8b13e725f26720500c146d43c98c11ebc4d47
   WebDriverAgent: 56088bd3de3bcd28b0a0528e614d21fb1de26158
 
-PODFILE CHECKSUM: 10b5083461f223e1f793ec8a37f40b99fb19673a
+PODFILE CHECKSUM: 65a2b4c43f9565a4267be63440b075e7b2d5d5b8
 
 COCOAPODS: 1.6.0
