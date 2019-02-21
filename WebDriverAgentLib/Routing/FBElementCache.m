@@ -39,12 +39,13 @@
 
 - (XCUIElement *)elementForUUID:(NSString *)uuid
 {
-  if (!uuid) {
+//  if (!uuid) {
+//    return nil;
+//  }
+//  XCUIElement *element = self.elementCache[uuid];
+//  [element resolve];
+//  return element;
     return nil;
-  }
-  XCUIElement *element = self.elementCache[uuid];
-  [element resolve];
-  return element;
 }
 
 - (void)clear

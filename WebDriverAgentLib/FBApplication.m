@@ -11,14 +11,6 @@
 
 #import "FBRunLoopSpinner.h"
 #import "FBMacros.h"
-#import "FBXCodeCompatibility.h"
-#import "XCAccessibilityElement.h"
-#import "XCAXClient_iOS.h"
-
-
-
-
-
 
 @interface FBApplication ()
 @property (nonatomic, assign) BOOL fb_isObservingAppImplCurrentProcess;
@@ -28,124 +20,140 @@
 
 + (instancetype)fb_activeApplication
 {
-  [[[FBRunLoopSpinner new]
-    timeout:5]
-   spinUntilTrue:^BOOL{
-     return [[XCAXClient_iOS sharedClient] activeApplications].count == 1;
-   }];
-
-  XCAccessibilityElement *activeApplicationElement = [[[XCAXClient_iOS sharedClient] activeApplications] firstObject];
-  if (!activeApplicationElement) {
-    return nil;
-  }
-  FBApplication *application = [FBApplication fb_applicationWithPID:activeApplicationElement.processIdentifier];
-  NSAssert(nil != application, @"Active application instance is not expected to be equal to nil", nil);
-  return application;
-}
-
-+ (instancetype)appWithPID:(pid_t)processID
-{
-  if ([NSProcessInfo processInfo].processIdentifier == processID) {
-    return nil;
-  }
-  FBApplication *application = [self fb_registeredApplicationWithProcessID:processID];
-  if (application) {
-    return application;
-  }
-  application = [super appWithPID:processID];
-  [FBApplication fb_registerApplication:application withProcessID:processID];
-  return application;
-}
-
-+ (instancetype)applicationWithPID:(pid_t)processID
-{
-  if ([NSProcessInfo processInfo].processIdentifier == processID) {
-    return nil;
-  }
-  FBApplication *application = [self fb_registeredApplicationWithProcessID:processID];
-  if (application) {
-    return application;
-  }
-  application = [super applicationWithPID:processID];
-  [FBApplication fb_registerApplication:application withProcessID:processID];
-  return application;
+    static dispatch_once_t onceToken;
+    static  FBApplication *instance;
+    dispatch_once(&onceToken, ^{
+        instance = [[FBApplication alloc] init];
+    });
+//  [[[FBRunLoopSpinner new]
+//    timeout:5]
+//   spinUntilTrue:^BOOL{
+//     return [[XCAXClient_iOS sharedClient] activeApplications].count == 1;
+//   }];
+//
+//  XCAccessibilityElement *activeApplicationElement = [[[XCAXClient_iOS sharedClient] activeApplications] firstObject];
+//  if (!activeApplicationElement) {
+//    return nil;
+//  }
+//  FBApplication *application = [FBApplication fb_applicationWithPID:activeApplicationElement.processIdentifier];
+//  NSAssert(nil != application, @"Active application instance is not expected to be equal to nil", nil);
+  return instance;
 }
 
 - (void)launch
 {
-  if (!self.fb_shouldWaitForQuiescence) {
-    [self.fb_appImpl addObserver:self forKeyPath:FBStringify(XCUIApplicationImpl, currentProcess) options:(NSKeyValueObservingOptions)(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew) context:nil];
-    self.fb_isObservingAppImplCurrentProcess = YES;
-  }
-  [super launch];
-  [FBApplication fb_registerApplication:self withProcessID:self.processID];
+    
 }
 
-- (void)terminate
+- (NSString *)bundleID
 {
-  if (self.fb_isObservingAppImplCurrentProcess) {
-    [self.fb_appImpl removeObserver:self forKeyPath:FBStringify(XCUIApplicationImpl, currentProcess)];
-  }
-  [super terminate];
+    NSString *bundleId = [[NSBundle mainBundle] objectForInfoDictionaryKey:kCFBundleIdentifierKey];
 }
 
-
-#pragma mark - Quiescence
-
-- (void)_waitForQuiescence
-{
-  if (!self.fb_shouldWaitForQuiescence) {
-    return;
-  }
-  [super _waitForQuiescence];
-}
-
-- (XCUIApplicationImpl *)fb_appImpl
-{
-  if (![self respondsToSelector:@selector(applicationImpl)]) {
-    return nil;
-  }
-  XCUIApplicationImpl *appImpl = [self applicationImpl];
-  if (![appImpl respondsToSelector:@selector(currentProcess)]) {
-    return nil;
-  }
-  return appImpl;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context
-{
-  if (object != self.fb_appImpl) {
-    return;
-  }
-  if (![keyPath isEqualToString:FBStringify(XCUIApplicationImpl, currentProcess)]) {
-    return;
-  }
-  if ([change[NSKeyValueChangeKindKey] unsignedIntegerValue] != NSKeyValueChangeSetting) {
-    return;
-  }
-  XCUIApplicationProcess *applicationProcess = change[NSKeyValueChangeNewKey];
-  if (!applicationProcess || [applicationProcess isProxy] || ![applicationProcess isMemberOfClass:XCUIApplicationProcess.class]) {
-    return;
-  }
-}
-
-
-#pragma mark - Process registration
-
-static NSMutableDictionary *FBPidToApplicationMapping;
-
-+ (instancetype)fb_registeredApplicationWithProcessID:(pid_t)processID
-{
-  return FBPidToApplicationMapping[@(processID)];
-}
-
-+ (void)fb_registerApplication:(FBApplication *)application withProcessID:(pid_t)processID
-{
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    FBPidToApplicationMapping = [NSMutableDictionary dictionary];
-  });
-  FBPidToApplicationMapping[@(application.processID)] = application;
-}
+//
+//+ (instancetype)appWithPID:(pid_t)processID
+//{
+//  if ([NSProcessInfo processInfo].processIdentifier == processID) {
+//    return nil;
+//  }
+//  FBApplication *application = [self fb_registeredApplicationWithProcessID:processID];
+//  if (application) {
+//    return application;
+//  }
+//  application = [super appWithPID:processID];
+//  [FBApplication fb_registerApplication:application withProcessID:processID];
+//  return application;
+//}
+//
+//+ (instancetype)applicationWithPID:(pid_t)processID
+//{
+//  if ([NSProcessInfo processInfo].processIdentifier == processID) {
+//    return nil;
+//  }
+//  FBApplication *application = [self fb_registeredApplicationWithProcessID:processID];
+//  if (application) {
+//    return application;
+//  }
+//  application = [super applicationWithPID:processID];
+//  [FBApplication fb_registerApplication:application withProcessID:processID];
+//  return application;
+//}
+//
+//- (void)launch
+//{
+//  if (!self.fb_shouldWaitForQuiescence) {
+//    [self.fb_appImpl addObserver:self forKeyPath:FBStringify(XCUIApplicationImpl, currentProcess) options:(NSKeyValueObservingOptions)(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew) context:nil];
+//    self.fb_isObservingAppImplCurrentProcess = YES;
+//  }
+//  [super launch];
+//  [FBApplication fb_registerApplication:self withProcessID:self.processID];
+//}
+//
+//- (void)terminate
+//{
+//  if (self.fb_isObservingAppImplCurrentProcess) {
+//    [self.fb_appImpl removeObserver:self forKeyPath:FBStringify(XCUIApplicationImpl, currentProcess)];
+//  }
+//  [super terminate];
+//}
+//
+//
+//#pragma mark - Quiescence
+//
+//- (void)_waitForQuiescence
+//{
+//  if (!self.fb_shouldWaitForQuiescence) {
+//    return;
+//  }
+//  [super _waitForQuiescence];
+//}
+//
+//- (XCUIApplicationImpl *)fb_appImpl
+//{
+//  if (![self respondsToSelector:@selector(applicationImpl)]) {
+//    return nil;
+//  }
+//  XCUIApplicationImpl *appImpl = [self applicationImpl];
+//  if (![appImpl respondsToSelector:@selector(currentProcess)]) {
+//    return nil;
+//  }
+//  return appImpl;
+//}
+//
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context
+//{
+//  if (object != self.fb_appImpl) {
+//    return;
+//  }
+//  if (![keyPath isEqualToString:FBStringify(XCUIApplicationImpl, currentProcess)]) {
+//    return;
+//  }
+//  if ([change[NSKeyValueChangeKindKey] unsignedIntegerValue] != NSKeyValueChangeSetting) {
+//    return;
+//  }
+//  XCUIApplicationProcess *applicationProcess = change[NSKeyValueChangeNewKey];
+//  if (!applicationProcess || [applicationProcess isProxy] || ![applicationProcess isMemberOfClass:XCUIApplicationProcess.class]) {
+//    return;
+//  }
+//}
+//
+//
+//#pragma mark - Process registration
+//
+//static NSMutableDictionary *FBPidToApplicationMapping;
+//
+//+ (instancetype)fb_registeredApplicationWithProcessID:(pid_t)processID
+//{
+//  return FBPidToApplicationMapping[@(processID)];
+//}
+//
+//+ (void)fb_registerApplication:(FBApplication *)application withProcessID:(pid_t)processID
+//{
+//  static dispatch_once_t onceToken;
+//  dispatch_once(&onceToken, ^{
+//    FBPidToApplicationMapping = [NSMutableDictionary dictionary];
+//  });
+//  FBPidToApplicationMapping[@(application.processID)] = application;
+//}
 
 @end

@@ -15,10 +15,6 @@
 #import "FBApplication.h"
 #import "FBElementCache.h"
 #import "FBMacros.h"
-#import "FBSpringboardApplication.h"
-#import "XCAccessibilityElement.h"
-#import "XCAXClient_iOS.h"
-
 
 NSString *const FBApplicationCrashedException = @"FBApplicationCrashedException";
 
@@ -36,9 +32,6 @@ static FBSession *_activeSession;
 
 + (void)markSessionActive:(FBSession *)session
 {
-  if (_activeSession && _activeSession.testedApplication.bundleID != session.testedApplication.bundleID) {
-    [_activeSession kill];
-  }
   _activeSession = session;
 }
 
@@ -65,15 +58,11 @@ static FBSession *_activeSession;
 
 - (void)kill
 {
-  [self.testedApplication terminate];
   _activeSession = nil;
 }
 
 - (FBApplication *)application
 {
-  if (self.testedApplication && !self.testedApplication.running) {
-    [[NSException exceptionWithName:FBApplicationCrashedException reason:@"Application is not running, possibly crashed" userInfo:nil] raise];
-  }
   return [FBApplication fb_activeApplication] ?: self.testedApplication;
 }
 

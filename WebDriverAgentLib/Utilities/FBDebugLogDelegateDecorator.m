@@ -13,7 +13,7 @@
 
 
 @interface FBDebugLogDelegateDecorator ()
-@property (nonatomic, strong) id<XCDebugLogDelegate> debugLogger;
+
 @end
 
 @implementation FBDebugLogDelegateDecorator

@@ -9,7 +9,7 @@
 
 #import "FBScreenshotCommands.h"
 
-
+#import "UIDevice+FBHelper.h"
 
 @implementation FBScreenshotCommands
 
@@ -30,7 +30,7 @@
 + (id<FBResponsePayload>)handleGetScreenshot:(FBRouteRequest *)request
 {
   NSError *error;
-  NSData *screenshotData = [[XCUIDevice sharedDevice] fb_screenshotWithError:&error];
+  NSData *screenshotData = [[UIDevice currentDevice] fb_screenshotWithError:&error];
   if (nil == screenshotData) {
     return FBResponseWithError(error);
   }

@@ -23,6 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL fb_shouldWaitForQuiescence;
 
+@property (nonatomic, strong) NSString *label;
+
+@property (nonatomic, strong, readonly) NSString *bundleID;
+
+- (void)launch;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -72,19 +72,6 @@ extern NSString *const FBAlertObstructingElementException;
  */
 - (BOOL)clickAlertButton:(NSString *)label error:(NSError **)error;
 
-/**
- Filters out elements obstructed by alert
-
- @param elements array of elements we want to filter
- @return elements not obstructed by alert
- */
-- (NSArray<XCUIElement *> *)filterObstructedElements:(NSArray<XCUIElement *> *)elements;
-
-/**
- XCUElement that represents alert
- */
-- (nullable XCUIElement *)alertElement;
-
 @end
 
 NS_ASSUME_NONNULL_END

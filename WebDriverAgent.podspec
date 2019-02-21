@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
     core.requires_arc         = true
     core.dependency 'RoutingHTTPServer'
     core.resource = 'Resources/WebDriverAgent.bundle'
+    core.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-lObjC', 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
   end
 
 end

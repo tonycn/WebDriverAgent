@@ -9,8 +9,19 @@
 
 #import "AppDelegate.h"
 
+#import "FBWebDriverServerRunner.h"
+
+
 @interface AppDelegate ()
 @end
 
 @implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+  [[FBWebDriverServerRunner sharedRunner] startRunner];
+  
+  return YES;
+}
+
 @end

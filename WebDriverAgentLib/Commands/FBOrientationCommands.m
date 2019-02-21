@@ -64,9 +64,10 @@ const struct FBWDOrientationValues FBWDOrientationValues = {
 
 + (id<FBResponsePayload>)handleGetRotation:(FBRouteRequest *)request
 {
-    XCUIDevice *device = [XCUIDevice sharedDevice];
-    UIDeviceOrientation orientation = device.orientation;
-    return FBResponseWithStatus(FBCommandStatusNoError, device.fb_rotationMapping[@(orientation)]);
+//    XCUIDevice *device = [XCUIDevice sharedDevice];
+//    UIDeviceOrientation orientation = device.orientation;
+//    return FBResponseWithStatus(FBCommandStatusNoError, device.fb_rotationMapping[@(orientation)]);
+    return nil;
 }
 
 + (id<FBResponsePayload>)handleSetRotation:(FBRouteRequest *)request
@@ -83,28 +84,31 @@ const struct FBWDOrientationValues FBWDOrientationValues = {
 
 + (NSString *)interfaceOrientationForApplication:(FBApplication *)application
 {
-  NSNumber *orientation = @(application.interfaceOrientation);
-  NSSet *keys = [[self _orientationsMapping] keysOfEntriesPassingTest:^BOOL(id key, NSNumber *obj, BOOL *stop) {
-    return [obj isEqualToNumber:orientation];
-  }];
-  if (keys.count == 0) {
-    return @"Unknown orientation";
-  }
-  return keys.anyObject;
+//  NSNumber *orientation = @(application.interfaceOrientation);
+//  NSSet *keys = [[self _orientationsMapping] keysOfEntriesPassingTest:^BOOL(id key, NSNumber *obj, BOOL *stop) {
+//    return [obj isEqualToNumber:orientation];
+//  }];
+//  if (keys.count == 0) {
+//    return @"Unknown orientation";
+//  }
+//  return keys.anyObject;
+    return nil;
 }
 
 + (BOOL)setDeviceRotation:(NSDictionary *)rotationObj forApplication:(FBApplication *)application
 {
-  return [[XCUIDevice sharedDevice] fb_setDeviceRotation:rotationObj];
+//  return [[XCUIDevice sharedDevice] fb_setDeviceRotation:rotationObj];
+    return YES;
 }
 
 + (BOOL)setDeviceOrientation:(NSString *)orientation forApplication:(FBApplication *)application
 {
-  NSNumber *orientationValue = [[self _orientationsMapping] objectForKey:[orientation uppercaseString]];
-  if (orientationValue == nil) {
-    return NO;
-  }
-  return [[XCUIDevice sharedDevice] fb_setDeviceInterfaceOrientation:orientationValue.integerValue];
+//  NSNumber *orientationValue = [[self _orientationsMapping] objectForKey:[orientation uppercaseString]];
+//  if (orientationValue == nil) {
+//    return NO;
+//  }
+//  return [[XCUIDevice sharedDevice] fb_setDeviceInterfaceOrientation:orientationValue.integerValue];
+    return YES;
 }
 
 + (NSDictionary *)_orientationsMapping

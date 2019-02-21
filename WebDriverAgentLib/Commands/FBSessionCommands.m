@@ -14,8 +14,7 @@
 #import "FBRouteRequest.h"
 #import "FBSession.h"
 #import "FBApplication.h"
-
-
+#import "UIDevice+FBHelper.h"
 
 
 @implementation FBSessionCommands
@@ -78,15 +77,8 @@
     [FBConfiguration setMaxTypingFrequency:[requirements[@"maxTypingFrequency"] integerValue]];
   }
 
-  FBApplication *app = [[FBApplication alloc] initPrivateWithPath:appPath bundleID:bundleID];
-  app.fb_shouldWaitForQuiescence = [requirements[@"shouldWaitForQuiescence"] boolValue];
-  app.launchArguments = (NSArray<NSString *> *)requirements[@"arguments"] ?: @[];
-  app.launchEnvironment = (NSDictionary <NSString *, NSString *> *)requirements[@"environment"] ?: @{};
+  FBApplication *app = [[FBApplication alloc] init];
   [app launch];
-
-  if (app.processID == 0) {
-    return FBResponseWithErrorFormat(@"Failed to launch %@ application", bundleID);
-  }
   [FBSession sessionWithApplication:app];
   return FBResponseWithObject(FBSessionCommands.sessionInformation);
 }
@@ -117,7 +109,7 @@
       @"ios" :
         @{
           @"simulatorVersion" : [[UIDevice currentDevice] systemVersion],
-          @"ip" : [XCUIDevice sharedDevice].fb_wifiIPAddress ?: [NSNull null],
+          @"ip" : [[UIDevice currentDevice] fb_getLocalIPAddress] ?: [NSNull null],
         },
       @"build" :
         @{
@@ -129,9 +121,9 @@
 
 + (id<FBResponsePayload>)handleGetHealthCheck:(FBRouteRequest *)request
 {
-  if (![[XCUIDevice sharedDevice] fb_healthCheckWithApplication:[FBApplication fb_activeApplication]]) {
-    return FBResponseWithErrorFormat(@"Health check failed");
-  }
+//  if (![[XCUIDevice sharedDevice] fb_healthCheckWithApplication:[FBApplication fb_activeApplication]]) {
+//    return FBResponseWithErrorFormat(@"Health check failed");
+//  }
   return FBResponseWithOK();
 }
 

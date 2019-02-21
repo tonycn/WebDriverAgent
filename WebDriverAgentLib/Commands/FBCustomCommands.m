@@ -18,13 +18,6 @@
 #import "FBRouteRequest.h"
 #import "FBRunLoopSpinner.h"
 #import "FBSession.h"
-#import "FBXCodeCompatibility.h"
-#import "FBSpringboardApplication.h"
-
-
-
-
-
 
 @implementation FBCustomCommands
 
@@ -46,21 +39,21 @@
 
 + (id<FBResponsePayload>)handleHomescreenCommand:(FBRouteRequest *)request
 {
-  NSError *error;
-  if (![[XCUIDevice sharedDevice] fb_goToHomescreenWithError:&error]) {
-    return FBResponseWithError(error);
-  }
+//  NSError *error;
+//  if (![[XCUIDevice sharedDevice] fb_goToHomescreenWithError:&error]) {
+//    return FBResponseWithError(error);
+//  }
   return FBResponseWithOK();
 }
 
 + (id<FBResponsePayload>)handleDeactivateAppCommand:(FBRouteRequest *)request
 {
-  NSNumber *requestedDuration = request.arguments[@"duration"];
-  NSTimeInterval duration = (requestedDuration ? requestedDuration.doubleValue : 3.);
-  NSError *error;
-  if (![request.session.application fb_deactivateWithDuration:duration error:&error]) {
-    return FBResponseWithError(error);
-  }
+//  NSNumber *requestedDuration = request.arguments[@"duration"];
+//  NSTimeInterval duration = (requestedDuration ? requestedDuration.doubleValue : 3.);
+//  NSError *error;
+//  if (![request.session.application fb_deactivateWithDuration:duration error:&error]) {
+//    return FBResponseWithError(error);
+//  }
   return FBResponseWithOK();
 }
 
@@ -72,37 +65,38 @@
 
 + (id<FBResponsePayload>)handleDismissKeyboardCommand:(FBRouteRequest *)request
 {
-  [request.session.application dismissKeyboard];
-  NSError *error;
-  NSString *errorDescription = @"The keyboard cannot be dismissed. Try to dismiss it in the way supported by your application under test.";
-  if ([UIDevice.currentDevice userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-    errorDescription = @"The keyboard on iPhone cannot be dismissed because of a known XCTest issue. Try to dismiss it in the way supported by your application under test.";
-  }
-  BOOL isKeyboardNotPresent =
-  [[[[FBRunLoopSpinner new]
-     timeout:5]
-    timeoutErrorMessage:errorDescription]
-   spinUntilTrue:^BOOL{
-     XCUIElement *foundKeyboard = [[FBApplication fb_activeApplication].query descendantsMatchingType:XCUIElementTypeKeyboard].fb_firstMatch;
-     return !(foundKeyboard && foundKeyboard.fb_isVisible);
-   }
-   error:&error];
-  if (!isKeyboardNotPresent) {
-    return FBResponseWithError(error);
-  }
+//  [request.session.application dismissKeyboard];
+//  NSError *error;
+//  NSString *errorDescription = @"The keyboard cannot be dismissed. Try to dismiss it in the way supported by your application under test.";
+//  if ([UIDevice.currentDevice userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+//    errorDescription = @"The keyboard on iPhone cannot be dismissed because of a known XCTest issue. Try to dismiss it in the way supported by your application under test.";
+//  }
+//  BOOL isKeyboardNotPresent =
+//  [[[[FBRunLoopSpinner new]
+//     timeout:5]
+//    timeoutErrorMessage:errorDescription]
+//   spinUntilTrue:^BOOL{
+//     XCUIElement *foundKeyboard = [[FBApplication fb_activeApplication].query descendantsMatchingType:XCUIElementTypeKeyboard].fb_firstMatch;
+//     return !(foundKeyboard && foundKeyboard.fb_isVisible);
+//   }
+//   error:&error];
+//  if (!isKeyboardNotPresent) {
+//    return FBResponseWithError(error);
+//  }
   return FBResponseWithOK();
 }
 
 + (id<FBResponsePayload>)handleGetElementCacheSizeCommand:(FBRouteRequest *)request
 {
-  NSNumber *count = [NSNumber numberWithUnsignedInteger:[request.session.elementCache count]];
-  return FBResponseWithObject(count);
+//  NSNumber *count = [NSNumber numberWithUnsignedInteger:[request.session.elementCache count]];
+//  return FBResponseWithObject(count);
+    return nil;
 }
 
 + (id<FBResponsePayload>)handleClearElementCacheCommand:(FBRouteRequest *)request
 {
-  FBElementCache *elementCache = request.session.elementCache;
-  [elementCache clear];
+//  FBElementCache *elementCache = request.session.elementCache;
+//  [elementCache clear];
   return FBResponseWithOK();
 }
 @end

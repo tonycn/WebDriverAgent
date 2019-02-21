@@ -87,11 +87,11 @@ id<FBResponsePayload> FBResponseFileWithPath(NSString *path)
 inline static NSDictionary *FBDictionaryResponseWithElement(XCUIElement *element, NSString *elementUUID, BOOL compact)
 {
   NSMutableDictionary *dictionary = [NSMutableDictionary new];
-  dictionary[@"ELEMENT"] = elementUUID;
-  if (!compact) {
-    XCElementSnapshot *snapshot = element.fb_lastSnapshot;
-    dictionary[@"type"] = snapshot.wdType;
-    dictionary[@"label"] = snapshot.wdLabel ?: [NSNull null];
-  }
+//  dictionary[@"ELEMENT"] = elementUUID;
+//  if (!compact) {
+//    XCElementSnapshot *snapshot = element.fb_lastSnapshot;
+//    dictionary[@"type"] = snapshot.wdType;
+//    dictionary[@"label"] = snapshot.wdLabel ?: [NSNull null];
+//  }
   return dictionary.copy;
 }

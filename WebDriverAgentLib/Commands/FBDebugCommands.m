@@ -14,8 +14,6 @@
 #import "FBSession.h"
 
 
-#import "FBXPath.h"
-
 @implementation FBDebugCommands
 
 #pragma mark - <FBCommandHandler>
@@ -40,40 +38,42 @@ static NSString *const SOURCE_FORMAT_DESCRIPTION = @"description";
 
 + (id<FBResponsePayload>)handleGetSourceCommand:(FBRouteRequest *)request
 {
-  FBApplication *application = request.session.application ?: [FBApplication fb_activeApplication];
-  NSString *sourceType = request.parameters[@"format"] ?: SOURCE_FORMAT_XML;
-  id result;
-  if ([sourceType caseInsensitiveCompare:SOURCE_FORMAT_XML] == NSOrderedSame) {
-    [application fb_waitUntilSnapshotIsStable];
-    result = [FBXPath xmlStringWithSnapshot:application.fb_lastSnapshot];
-  } else if ([sourceType caseInsensitiveCompare:SOURCE_FORMAT_JSON] == NSOrderedSame) {
-    result = application.fb_tree;
-  } else if ([sourceType caseInsensitiveCompare:SOURCE_FORMAT_DESCRIPTION] == NSOrderedSame) {
-    NSMutableArray<NSString *> *childrenDescriptions = [NSMutableArray array];
-    for (XCUIElement *child in [application childrenMatchingType:XCUIElementTypeAny].allElementsBoundByIndex) {
-      [childrenDescriptions addObject:child.debugDescription];
-    }
-    // debugDescription property of XCUIApplication instance shows descendants addresses in memory
-    // instead of the actual information about them, however the representation works properly
-    // for all descendant elements
-    result = (0 == childrenDescriptions.count) ? application.debugDescription : [childrenDescriptions componentsJoinedByString:@"\n\n"];
-  } else {
-    return FBResponseWithStatus(
-      FBCommandStatusUnsupported,
-      [NSString stringWithFormat:@"Unknown source format '%@'. Only %@ source formats are supported.",
-       sourceType, @[SOURCE_FORMAT_XML, SOURCE_FORMAT_JSON, SOURCE_FORMAT_DESCRIPTION]]
-    );
-  }
-  if (nil == result) {
-    return FBResponseWithErrorFormat(@"Cannot get '%@' source of the current application", sourceType);
-  }
-  return FBResponseWithObject(result);
+//  FBApplication *application = request.session.application ?: [FBApplication fb_activeApplication];
+//  NSString *sourceType = request.parameters[@"format"] ?: SOURCE_FORMAT_XML;
+//  id result;
+//  if ([sourceType caseInsensitiveCompare:SOURCE_FORMAT_XML] == NSOrderedSame) {
+//    [application fb_waitUntilSnapshotIsStable];
+//    result = [FBXPath xmlStringWithSnapshot:application.fb_lastSnapshot];
+//  } else if ([sourceType caseInsensitiveCompare:SOURCE_FORMAT_JSON] == NSOrderedSame) {
+//    result = application.fb_tree;
+//  } else if ([sourceType caseInsensitiveCompare:SOURCE_FORMAT_DESCRIPTION] == NSOrderedSame) {
+//    NSMutableArray<NSString *> *childrenDescriptions = [NSMutableArray array];
+//    for (XCUIElement *child in [application childrenMatchingType:XCUIElementTypeAny].allElementsBoundByIndex) {
+//      [childrenDescriptions addObject:child.debugDescription];
+//    }
+//    // debugDescription property of XCUIApplication instance shows descendants addresses in memory
+//    // instead of the actual information about them, however the representation works properly
+//    // for all descendant elements
+//    result = (0 == childrenDescriptions.count) ? application.debugDescription : [childrenDescriptions componentsJoinedByString:@"\n\n"];
+//  } else {
+//    return FBResponseWithStatus(
+//      FBCommandStatusUnsupported,
+//      [NSString stringWithFormat:@"Unknown source format '%@'. Only %@ source formats are supported.",
+//       sourceType, @[SOURCE_FORMAT_XML, SOURCE_FORMAT_JSON, SOURCE_FORMAT_DESCRIPTION]]
+//    );
+//  }
+//  if (nil == result) {
+//    return FBResponseWithErrorFormat(@"Cannot get '%@' source of the current application", sourceType);
+//  }
+//  return FBResponseWithObject(result);
+    return nil;
 }
 
 + (id<FBResponsePayload>)handleGetAccessibleSourceCommand:(FBRouteRequest *)request
 {
-  FBApplication *application = request.session.application ?: [FBApplication fb_activeApplication];
-  return FBResponseWithObject(application.fb_accessibilityTree ?: @{});
+//  FBApplication *application = request.session.application ?: [FBApplication fb_activeApplication];
+//  return FBResponseWithObject(application.fb_accessibilityTree ?: @{});
+    return nil;
 }
 
 @end

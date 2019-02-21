@@ -7,24 +7,38 @@
 //
 
 #import "FBWebDriverServerRunner.h"
+#import "FBWebServer.h"
+#import "FBConfiguration.h"
+
+@interface FBWebDriverServerRunner ()
+@property (nonatomic, strong) FBWebServer *webServer;
+@end
 
 @implementation FBWebDriverServerRunner
 
-+ (void)setUp
-{
-  [FBDebugLogDelegateDecorator decorateXCTestLogger];
-  [FBConfiguration disableRemoteQueryEvaluation];
-  [super setUp];
++ (instancetype)sharedRunner {
+    static FBWebDriverServerRunner *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[FBWebDriverServerRunner alloc] init];
+    });
+    return _sharedInstance;
 }
 
 /**
  Never ending test used to start WebDriverAgent
  */
-- (void)testRunner
+- (void)startRunner
 {
   FBWebServer *webServer = [[FBWebServer alloc] init];
   webServer.delegate = self;
   [webServer startServing];
+  self.webServer = webServer;
+}
+
+- (void)stopRunner
+{
+  [self.webServer stopServing];
 }
 
 #pragma mark - FBWebServerDelegate

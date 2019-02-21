@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FBWebDriverServerRunner : NSObject
 
++ (instancetype)sharedRunner;
+
+- (void)startRunner;
+
+- (void)stopRunner;
+
 @end
 
 NS_ASSUME_NONNULL_END
